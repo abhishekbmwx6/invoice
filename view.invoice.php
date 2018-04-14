@@ -133,7 +133,7 @@ require_once('./controller/number_to_text.php');
             echo "<td>".($invoice_result['total_after_tax'] - $invoice_result["total_before_tax"])."</td>";
             echo "<td>".$invoice_result["total_after_tax"]."</td>";
             echo "</tr>";
-            echo "<tr><td colspan='9' class='text-capitalize' >Amount in Words: <br>".convert_number_to_words($invoice_result["total_before_tax"])."</td></tr>";
+            echo "<tr><td colspan='9' class='text-capitalize' >Amount in Words: ".convert_number_to_words($invoice_result["total_before_tax"])."</td></tr>";
             
             echo "<tr><td colspan='6'></td><td colspan='3'>A.K. Mobiles <br><br><br></td></tr>";
             echo "<tr><td colspan='6'></td><td colspan='3'>Authorized Signatory</td></tr>";
