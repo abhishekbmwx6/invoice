@@ -105,23 +105,23 @@ require_once('./controller/number_to_text.php');
                                 <tr>
                             <td class="col-sm-1"><?php echo $count ?></td>
                             <td class="col-sm-4">
-                                <input type="text" name="product[<?php echo $count  ?>]" id="product1" value="<?php echo isset($product['product_name']) ? $product['product_name']:"" ?>" class="form-control chk" />
+                                <input type="text" name="product[<?php echo $count  ?>]" id="product<?php echo $count  ?>" value="<?php echo isset($product['product_name']) ? $product['product_name']:"" ?>" class="form-control chk" />
                             </td>
                             <td class="col-sm-2">
-                                <input type="number" name="quantity[<?php echo $count  ?>]"  id="quantity1" value="<?php echo isset($product['quantity']) ? $product['quantity']:"" ?>" onfocusout="showTotal(1)" class="form-control chk"/>
+                                <input type="number" name="quantity[<?php echo $count  ?>]"  id="quantity<?php echo $count  ?>" value="<?php echo isset($product['quantity']) ? $product['quantity']:"" ?>" onfocusout="showTotal(1)" class="form-control chk"/>
                             </td>
                             <td class="col-sm-2">
-                                <input type="number" name="price[<?php echo $count  ?>]" id="price1" value="<?php echo isset($product['product_value']) ? $product['product_value']:"" ?>" onfocusout="showTotal(1)" class="form-control chk"/>
+                                <input type="number" name="price[<?php echo $count  ?>]" id="price<?php echo $count  ?>" value="<?php echo isset($product['product_value']) ? $product['product_value']:"" ?>" onfocusout="showTotal(1)" class="form-control chk"/>
                             </td>
                             <td class="col-sm-1">
-                                <input type="checkbox" name="sgst[<?php echo $count  ?>]" id="sgst1" value='6' onchange="showTotal(1)"  <?php echo check_tax("sgst",$product['invoice_product_id'],$conn) ? "checked" :"" ?> class="form-control"/>
+                                <input type="checkbox" name="sgst[<?php echo $count  ?>]" id="sgst<?php echo $count  ?>" value='6' onchange="showTotal(<?php echo $count  ?>)"  <?php echo check_tax("sgst",$product['invoice_product_id'],$conn) ? "checked" :"" ?> class="form-control"/>
                             </td>
                             <td class="col-sm-1">
-                                <input type="checkbox" name="cgst[<?php echo $count  ?>]" id="cgst1" value='6' onchange="showTotal(1)" <?php echo check_tax("cgst",$product['invoice_product_id'],$conn) ? "checked" :"" ?> class="form-control"/>
+                                <input type="checkbox" name="cgst[<?php echo $count  ?>]" id="cgst<?php echo $count  ?>" value='6' onchange="showTotal(<?php echo $count  ?>)" <?php echo check_tax("cgst",$product['invoice_product_id'],$conn) ? "checked" :"" ?> class="form-control"/>
                             </td>
                             <td class="col-sm-2">
-                                <label id="total_label1" class="form-control" ><?php echo isset($product['final_product_value']) ? $product['final_product_value']:0.00 ?></label>
-                                <input type="hidden" name="total[<?php echo $count  ?>]" class="final_grand_total" value="<?php echo isset($product['final_product_value']) ? $product['final_product_value']:0 ?>" id="total_label_hidden1"/>
+                                <label id="total_label<?php echo $count  ?>" class="form-control" ><?php echo isset($product['final_product_value']) ? $product['final_product_value']:0.00 ?></label>
+                                <input type="hidden" name="total[<?php echo $count  ?>]" class="final_grand_total" value="<?php echo isset($product['final_product_value']) ? $product['final_product_value']:0 ?>" id="total_label_hidden<?php echo $count  ?>"/>
                             </td>
                             <td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>
                         </tr>
@@ -183,7 +183,7 @@ require_once('./controller/number_to_text.php');
         var price = $("#price"+counter).val();
         var sgst = $("#sgst"+counter).is(":checked");
         var cgst = $("#cgst"+counter).is(":checked");
-        
+        console.log(quantity, price, sgst, cgst);
         if(quantity>0 && price>0){
             var final_amt = 0;
             var total = parseInt(quantity) * parseInt(price);
